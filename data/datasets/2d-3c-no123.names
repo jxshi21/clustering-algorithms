@@ -1,0 +1,8 @@
+% Data from J. Handl
+% http://personalpages.manchester.ac.uk/mbs/Julia.Handl/generators.html
+%
+@RELATION 2d-3c-no123
+
+@ATTRIBUTE a0 REAL
+@ATTRIBUTE a1 REAL
+@ATTRIBUTE class {0,1,2}

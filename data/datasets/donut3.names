@@ -1,0 +1,5 @@
+@RELATION donut3.arff
+
+@ATTRIBUTE a0 REAL
+@ATTRIBUTE a1 REAL
+@ATTRIBUTE class {0,1,2}

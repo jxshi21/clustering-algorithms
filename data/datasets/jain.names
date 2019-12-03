@@ -1,0 +1,9 @@
+% Jain
+% N=373, M=2, D=2
+% Jain, A. and M. Law, Data clustering: A user's dilemma. Lecture Notes in Computer Science, 2005. 3776: p. 1-10.
+%
+@RELATION jain
+
+@ATTRIBUTE x REAL
+@ATTRIBUTE y REAL
+@ATTRIBUTE class {1,2}
