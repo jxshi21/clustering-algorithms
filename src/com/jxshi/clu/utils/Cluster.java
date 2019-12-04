@@ -65,7 +65,7 @@ public class Cluster {
 		if (!this.members.contains(point)) {
 			this.members.add(point);
 		} else {
-			System.out.println("[Warning] Add point {" + point.getId() + "} to cluster {" +this.getId()+ "} failed. Point already exists!");
+//			System.out.println("[Warning] Add point {" + point.getId() + "} to cluster {" +this.getId()+ "} failed. Point already exists!");
 		}
 	}
 	

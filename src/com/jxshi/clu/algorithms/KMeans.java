@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.HashSet;
 
 import com.jxshi.clu.utils.*;
-
-import java.util.HashSet;
 
 /**
  * KMeans Clustering Model
@@ -45,7 +44,7 @@ public class KMeans {
 		// field validity check
 		checkParams();
 		// create initial point set
-		points = new ArrayList<Point>();
+		this.points = new ArrayList<Point>();
 		for (int i = 0; i < this.dataSize; i++) {
 			this.points.add(new Point(i, data.get(i)));
 		}
@@ -63,7 +62,7 @@ public class KMeans {
 	 * checkParams()
      * @author jxshi21
      */
-	public void checkParams() {
+	private void checkParams() {
 		if (this.k == 0) throw new IllegalArgumentException("[ERROR] KMeans.k must be an integer > 0!");
 		if (Double.compare(this.threshold, 0) == 0) throw new IllegalArgumentException("[ERROR] KMeans.threshold must be a double > 0.0!");
 		if (this.iterMax == 0) throw new IllegalArgumentException("[ERROR] KMeans.iterMax must be an integer > 0!");
@@ -97,7 +96,7 @@ public class KMeans {
 	 * chooseRandCtrs()
      * @author jxshi21
      */
-	public void chooseRandCtrs() {
+	private void chooseRandCtrs() {
 		// TODO: choose random initial centers & create initial clusters
 		double[] minValues = new double[this.dim]; // minimum of each dimension
 		double[] maxValues = new double[this.dim]; // maximum of each dimension
@@ -132,7 +131,7 @@ public class KMeans {
 	 * assignCluster()
      * @author jxshi21
      */
-	public void assignCluster() {
+	private void assignCluster() {
 		// TODO: assign each Point to its nearest Cluster
 		for (Point p : this.points) {
 			double minDist = Integer.MAX_VALUE;
@@ -159,7 +158,7 @@ public class KMeans {
 	 * calClusterCenters()
      * @author jxshi21
      */
-	public boolean calClusterCenters() {
+	private boolean calClusterCenters() {
 		// TODO: calculate new center Point for each Cluster
 		//       and check if the process should go on
 		boolean iterContinue = false;
