@@ -11,7 +11,7 @@ import com.jxshi.clu.utils.*;
 /**
  * KMeans Clustering Model
  * @author jxshi21
- * @param None
+ * @param 
  * @date 2019/12/02
  */
 

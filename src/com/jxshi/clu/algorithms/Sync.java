@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Arrays;
 
 import com.jxshi.clu.utils.*;
@@ -12,7 +13,7 @@ import com.jxshi.clu.utils.*;
 /**
  * Sync Clustering Mode
  * @author jxshi21
- * @param None
+ * @param 
  * @date 2019/12/04
  */
 
@@ -95,7 +96,7 @@ public class Sync {
 		}
 		if (this.data == null) throw new IllegalArgumentException("[ERROR] An original data set is required!");
 		if (this.dataSize == 0) throw new IllegalArgumentException("[ERROR] Data set can't be empty!");
-		if (this.dim < 1) throw new IllegalArgumentException("[ERROR] KMeans.dim must be an integer > 0!");
+		if (this.dim < 1) throw new IllegalArgumentException("[ERROR] Sync.dim must be an integer > 0!");
 	}
 	
 	/**
@@ -278,13 +279,25 @@ public class Sync {
 					}
 				}
 				if (syncPoints.size() == 0) { // if syncPoints is empty
+					x.setClusterId(-2); // -2 means outlier
 					x.setOutlierFlag(true); // mark x as an outlier
 					outliers.add(x);
 				} else {
 					if (clusterId != -1) {
-						x.setClusterId(clusterId);
-						for (Integer i : syncPoints) {
-							this.points.get(i).setClusterId(clusterId);
+						// get target cluster
+						Iterator<Cluster> iterator = this.clusters.iterator();
+						while (iterator.hasNext()) {
+							Cluster next = (Cluster) iterator.next();
+							if (next.getId() == clusterId) {
+								// add members to this cluster
+								x.setClusterId(clusterId);
+								next.addMember(x);
+								for (Integer i : syncPoints) {
+									this.points.get(i).setClusterId(clusterId);
+									next.addMember(this.points.get(i));
+								}
+							}
+							break;
 						}
 					} else { // if all synchronized points are unallocated
 						Cluster newCluster = new Cluster(count);
@@ -298,7 +311,6 @@ public class Sync {
 						count++;
 					}
 				}
-				
 			}
 //			System.out.print("\n");
 		}

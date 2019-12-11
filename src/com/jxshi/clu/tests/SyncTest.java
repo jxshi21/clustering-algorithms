@@ -29,7 +29,7 @@ public class SyncTest {
 
 	public static void main(String[] args) {
 		// read data
-		String filePath = "D:\\Users\\Jinxin Shi\\eclipse-workspace\\Clustering\\data\\datasets\\2d-3c-no123.data";
+		String filePath = "D:\\Users\\Jinxin Shi\\eclipse-workspace\\Clustering\\data\\datasets\\diamond9.data";
 		DataLoader dataLoader = new DataLoader(filePath, ",", 0, 1, 2); // select column{0,1} as features and column{2} as class labels
 		int[] class_labels = new int[10000];
 		ArrayList<double[]> dataset = dataLoader.parseData(class_labels);
@@ -37,7 +37,7 @@ public class SyncTest {
 		// create Sync clustering model
 		double epsilon = 0.6;
 		double lambda = 0.99;
-//		Sync syncModel = new Sync(lambda, dataset); // automatically choose initial epsilon
+//		Sync syncModel = new Sync(lambda, dataset); // automatically choose initial epsilon (not suggested)
 		Sync syncModel = new Sync(epsilon, lambda, dataset); // manually set initial epsilon
 		syncModel.clustering();
 		

@@ -56,7 +56,12 @@ public class DataLoader {
 						curData[i] = Double.parseDouble(cells[i]);
 					}				
 					dataSet.add(curData);
-					classLabels[count] = Integer.parseInt(cells[this.labelIdx]);
+					if (cells[this.labelIdx] == "noise") {
+						classLabels[count] = -2; // -2 means outlier
+					} else {
+						classLabels[count] = Integer.parseInt(cells[this.labelIdx]);
+					}
+					
 //					System.out.println("finished reading row{" + count + "}: " + curLine); // debug
 					count++;
 				}
